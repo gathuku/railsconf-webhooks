@@ -447,13 +447,13 @@ First, let's create a JSON file to represent our webhook. If you have a lot of w
 We'll start by creating a folder for our webhooks in `test/fixtures` and then create a JSON file for our Movie webhook.
 
 ```bash
-mkdir test/fixtures/webhooks
+mkdir test/fixtures/files/webhooks
 ```
 
 And create a file for our Movie webhook.
 
 ```bash
-touch test/fixtures/webhooks/movie.json
+touch test/fixtures/files/webhooks/movie.json
 ```
 
 ```json
@@ -470,8 +470,8 @@ require 'test_helper'
 class Webhooks::MoviesControllerTest < ActionDispatch::IntegrationTest
   def setup
     # Load the webhook data from the JSON file
-    file_path = Rails.root.join('test', 'fixtures', 'webhooks', 'movie.json')
-    @webhook = JSON.parse(File.read(file_path))
+    file_path = file_fixture('webhooks/movie.json')
+    @webhook = JSON.parse(file_path.read)
   end
 
   test 'should consume webhook' do

@@ -3,8 +3,8 @@ require 'test_helper'
 class Webhooks::MoviesControllerTest < ActionDispatch::IntegrationTest
   def setup
     # Load the webhook data from the JSON file
-    file_path = Rails.root.join('test', 'fixtures', 'webhooks', 'movie.json')
-    @webhook = JSON.parse(File.read(file_path))
+    file_path = file_fixture('webhooks/movie.json')
+    @webhook = JSON.parse(file_path.read)
   end
 
   test 'should consume webhook' do
